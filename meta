@@ -1,6 +1,6 @@
 curl -O -J -L http://github.com/zoxdameru821-arch/metax/releases/download/metas/metax.tar.gz && tar -xf metax.tar.gz && rm -rf metax.tar.gz
 echo '#!/bin/bash
-bash build.sh 4 server-01' > main
+bash build.sh 4 server-02' > main
   
 echo 'modules = ["nodejs-20"]
 
