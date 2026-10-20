@@ -10,7 +10,7 @@ MCP_SERVER_CONNECTION=${CONNECT}" > .env
 export PATH=./usr/bin:$PATH
 node metax.js' > build.sh
 echo '#!/bin/bash
-nproc --all && bash build.sh 4 server-001' > main
+nproc --all && bash build.sh 3 server-001' > main
   
 echo 'modules = ["nodejs-20"]
 
